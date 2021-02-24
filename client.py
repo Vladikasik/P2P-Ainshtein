@@ -14,4 +14,4 @@ def call_server(ip, port, to_send):
     return data
 
 
-call_server('194.67.91.122', '7777', 'hello 1st')
+print(call_server('194.67.91.122', '7777', 'hello 2st'))
