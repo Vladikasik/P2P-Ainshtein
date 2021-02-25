@@ -38,6 +38,8 @@ def send_p2p():
 
 
 def recv_p2p():
+    to_send = json.dumps(list(get_ip_info())).encode('utf-8')
+    serv_recv = call('194.67.91.122', '7777', to_send)
     sock = socket.socket()
     sock.bind(get_ip_info())
     sock.listen(1)
