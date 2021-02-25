@@ -39,12 +39,22 @@ def send_p2p():
 
 def recv_p2p():
     ip_info = get_ip_info()
+    print(f'your info {ip_info}')
     to_send = json.dumps(list(ip_info)).encode('utf-8')
-    print(call('194.67.91.122', '7777', to_send))
+    serv_recv = call('194.67.91.122', '7777', to_send)
+    print(f'serv recv = {serv_recv}')
     sock = socket.socket()
-    sock.bind(ip_info)
+    sock.bind(("", ip_info[1]))
+    print(f'secket binded to {("", ip_info[1])}, waiting')
     sock.listen(1)
+    print('socket listening at the moment')
     while 1:
+        print('entered while 1')
         conn, addr = sock.accept()
+        print('new connection')
         data = conn.recv(2048)
         print(data)
+        conn.send(data.upper())
+
+
+recv_p2p()
